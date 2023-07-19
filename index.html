@@ -4,48 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/56a13af33a.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+
     <title>Rock-Paper-Scissors Game</title>
 </head>
 
 <body>
 
-    <h1>Rock Paper Scissors</h1>
-    <h3>Human vs Computer</h3>
-    <p>The first to 5 pointn wins!</p>
-    <div class="playGround">
-        <div class="humanGround">
-            <div class="humanBox">
-                <p>Human</p>
-                <p>Score: 0</p>
+    <div class="startGameWrapper">
+        <h1>Rock Paper Scissors</h1>
+        <h3>Humans Vs Computer</h3>
+        <p>Let the battle begin!</p>
+        <button class="startGame">Start Game</button>
+    </div>
 
-                <div class="human">
-                    <i></i>
-                    <div class="displayChoice"></div>
-                </div>
+    <div class="game">
+        <div class="gameTitle">
+            <h1>Rock Paper Scissors</h1>
+            <h3>Human vs Computer</h3>
+            <h3>The first to 5 points wins!</h3>
+        </div>
 
-                <div class="weapons">
+        <div class="playGround">
 
-                </div>
+            <!-- human ground -->
+            <div class="fightGround">
+                
+                    <div class="scoreBox">
+                        <p>Human</p>
+                        <p>Score: 0</p>
+                    </div>
+
+                    <div class="player">
+                        <i class="fa-solid fa-person-walking"></i>
+                        <div class="displayChoice"></div>
+                    </div>
+
+                    <div class="weapons">
+                        <div class="rock"><i class="fa-regular fa-hand-back-fist"></i><p>Rock</p></div>
+                        <div class="paper"><i class="fa-regular fa-hand"></i><p>Paper</p></div>
+                        <div class="scissors"><i class="fa-regular fa-hand-scissors"></i><p>Scissors</p></div>
+                    </div>
+               
+            </div>
+
+            <!-- results display -->
+            <div class="results"></div>
+
+            <!-- Computer ground -->
+            <div class="fightGround">
+                
+                    <div class="scoreBox">
+                        <p>Computer</p>
+                        <p>Score: 0</p>
+                    </div>
+
+                    <div class="player">
+                        <div class="displayChoice"></div>
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <div class="weapons">
+                        <div class="rock"><i class="fa-regular fa-hand-back-fist"></i><p>Rock</p></div>
+                        <div class="paper"><i class="fa-regular fa-hand"></i><p>Paper</p></div>
+                        <div class="scissors"><i class="fa-regular fa-hand-scissors"></i><p>Scissors</p></div>
+                    </div>
+                
             </div>
         </div>
 
-        <div class="results"></div>
-
-        <div class="computerGround">
-            <div class="humanBox">
-                <p>Computer</p>
-                <p>Score: 0</p>
-
-                <div class="comuter">
-                    <i></i>
-                    <div class="displayChoice"></div>
-                </div>
-
-                <div class="weapons">
-
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="sandbox.js"></script>

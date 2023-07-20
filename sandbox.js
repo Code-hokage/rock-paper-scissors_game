@@ -1,147 +1,155 @@
-const startGame = document.querySelector("button")
-const gameWrapper = document.querySelector(".startGameWrapper")
-
-const scoreInfo = document.querySelector('.scoreInfo')
-const results = document.querySelector('.results')
-
-const computerScore = document.querySelector('.humanScore')
-const humanScore = document.querySelector('.computerScore')
-
-const rockBtn = document.querySelector('.rock')
-const paperBtn = document.querySelector('.paper')
-const scissorsBtn = document.querySelector('.scissors')
+const startGame = document.querySelector('button')
+const gameWrapper = document.querySelector('.startGameWrapper')
 
 const humanWeapon = document.querySelector('.humanWeapon')
-const computerWeapon = document.querySelector('computerWeapon')
-const weapons = document.querySelectorAll(".weapon")
+const computerWeapon = document.querySelector('.computerWeapon')
 
-const endgameModal = document.getElementById('endgameModal')
-const endgameMsg = document.getElementById('endgameMsg')
+const humanScorePara = document.querySelector('.humanScore')
+const computerScorePara = document.querySelector('.computerScore')
 
-const overlay = document.getElementById('overlay')
-const restartBtn = document.getElementById('restartBtn')
+// const endgameModal = document.getElementById('endgameModal')
+// const endgameMsg = document.getElementById('endgameMsg')
 
-rockBtn.addEventListener('click', () => {
-    handleClick('rock')
-    humanWeapon.innerHTML = innerHTMLOfRock;
-})
+// const overlay = document.getElementById('overlay')
+// const restartBtn = document.getElementById('restartBtn')
 
-
-paperBtn.addEventListener('click', () => handleClick('paper'))
-scissorsBtn.addEventListener('click', () => handleClick('scissors'))
-
-restartBtn.addEventListener('click', restartGame)
-overlay.addEventListener('click', closeEndgameModal)
+// restartBtn.addEventListener('click', restartGame)
+// overlay.addEventListener('click', closeEndgameModal)
 
 
 startGame.addEventListener('click', () => {
-    gameWrapper.classList.toggle("displayNone")
+    gameWrapper.classList.toggle('displayNone')
 });
 
-let playerScore = 0
-let randomScore = 0
+let humanScore = 0;
+let computerScore = 0;
 let roundWinner = '';
-
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        roundWinner = 'tie'
-    }
-    if (
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper') ||
-        (playerSelection === 'paper' && computerSelection === 'rock')
-    ) {
-        playerScore++
-        roundWinner = 'human'
-    }
-    if (
-        (computerSelection === 'rock' && playerSelection === 'scissors') ||
-        (computerSelection === 'scissors' && playerSelection === 'paper') ||
-        (computerSelection === 'paper' && playerSelection === 'rock')
-    ) {
-        computerScore++
-        roundWinner = 'computer'
-    }
-    updateScoreMessage(roundWinner, playerSelection, computerSelection)
-}
 
 // computer selection
 function getRandomChoice() {
     let randomNumber = Math.floor(Math.random() * 3)
     switch (randomNumber) {
         case 0:
-            return 'rock'
+            return 'rock';
         case 1:
-            return 'paper'
+            return 'paper';
         case 2:
-            return 'scissors'
+            return 'scissors';
     }
 }
 
-function isGameOver() {
-    return playerScore === 5 || computerScore === 5
+// outcomes
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        roundWinner = 'tie';
+    }
+    if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'rock')
+    ) {
+        humanScore++;
+        roundWinner = 'human';
+    }
+    if (
+        (computerSelection === 'rock' && playerSelection === 'scissors') ||
+        (computerSelection === 'scissors' && playerSelection === 'paper') ||
+        (computerSelection === 'paper' && playerSelection === 'rock')
+    ) {
+        computerScore++;
+        roundWinner = 'computer';
+    }
+    updateScoreMessage(roundWinner, playerSelection, computerSelection)
 }
 
+// Get references to the buttons and result div
+const rockBtn = document.querySelector('.rock')
+const paperBtn = document.querySelector('.paper')
+const scissorsBtn = document.querySelector('.scissors')
 
+const scoreInfo = document.querySelector('.scoreInfo')
+const results = document.querySelector('.results')
+
+rockBtn.addEventListener('click', () => handleClick('rock'))
+paperBtn.addEventListener('click', () => handleClick('paper'))
+scissorsBtn.addEventListener('click', () => handleClick('scissors'))
+
+// player selection to handle game
 function handleClick(playerSelection) {
     // if (isGameOver()) {
     //     openEndgameModal()
     //     return
     // }
 
-    const computerSelection = getRandomChoice()
-    playRound(playerSelection, computerSelection)
-    updateChoices(playerSelection, computerSelection)
-    updateScore()
+    const computerSelection = getRandomChoice();
 
-    if (isGameOver()) {
-        openEndgameModal()
-        setFinalMessage()
-    }
+    playRound(playerSelection, computerSelection);
+    updateChoices(playerSelection, computerSelection);
+    updateScore();
+
+    // if (isGameOver()) {
+    //     openEndgameModal()
+    //     setFinalMessage()
+    // }
 }
-const innerHTMLOfRock = rockBtn.innerHTML;
+
+// round results
+function updateScore() {
+    if (roundWinner === 'tie') {
+        results.textContent = "It's a tie!";
+        humanWeapon.classList.remove('fa-fade');
+        computerWeapon.classList.remove('fa-fade');
+
+    } else if (roundWinner === 'human') {
+        results.textContent = 'You won!';
+        humanWeapon.classList.add('fa-fade');
+        computerWeapon.classList.remove('fa-fade');
+        
+    } else if (roundWinner === 'computer') {
+        results.textContent = 'You lost!';
+        computerWeapon.classList.add('fa-fade')
+        humanWeapon.classList.remove('fa-fade');
+    }
+
+    humanScorePara.textContent = `Score: ${humanScore}`;
+    computerScorePara.textContent = `Score: ${computerScore}`;
+}
+
+
+// function isGameOver() {
+//     return playerScore === 5 || computerScore === 5
+// }
+
 
 function updateChoices(playerSelection, computerSelection) {
     switch (playerSelection) {
         case 'rock':
-            humanWeapon.innerHTML = innerHTMLOfRock;
-            break
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist"></i>`;
+            break;
         case 'paper':
-            playerSign.textContent = '✋'
-            break
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand"></i>`;
+            break;
         case 'scissors':
-            playerSign.textContent = '✌'
-            break
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors"></i>`;
+            break;
     }
 
     switch (computerSelection) {
         case 'rock':
-            computerWeapon.innerHTML = '✊'
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist weapon"></i>`;
             break
         case 'paper':
-            computerSign.textContent = '✋'
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand weapon"></i>`;
             break
         case 'scissors':
-            computerSign.textContent = '✌'
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors weapon"></i>`;
             break
     }
 }
 
-function updateScore() {
-    if (roundWinner === 'tie') {
-        results.textContent = "It's a tie!"
-    } else if (roundWinner === 'player') {
-        results.textContent = 'You won!'
-    } else if (roundWinner === 'computer') {
-        results.textContent = 'You lost!'
-    }
-
-    humanScore.textContent = `Player: ${playerScore}`
-    computerScore.textContent = `Computer: ${computerScore}`
-}
 
 function updateScoreMessage(winner, playerSelection, computerSelection) {
-    if (winner === 'player') {
+    if (winner === 'human') {
         scoreInfo.textContent = `${capitalizeFirstLetter(
             playerSelection
         )} beats ${computerSelection.toLowerCase()}`
@@ -154,7 +162,7 @@ function updateScoreMessage(winner, playerSelection, computerSelection) {
         return
     }
 
-    scoreMessage.textContent = `${capitalizeFirstLetter(
+    scoreInfo.textContent = `${capitalizeFirstLetter(
         playerSelection
     )} ties with ${computerSelection.toLowerCase()}`
 }
@@ -168,24 +176,24 @@ function capitalizeFirstLetter(string) {
 //     overlay.classList.add('active')
 // }
 
-function closeEndgameModal() {
-    endgameModal.classList.remove('active')
-    overlay.classList.remove('active')
-}
+// function closeEndgameModal() {
+//     endgameModal.classList.remove('active')
+//     overlay.classList.remove('active')
+// }
 
-function setFinalMessage() {
-    return playerScore > computerScore
-        ? (endgameMsg.textContent = 'You won!')
-        : (endgameMsg.textContent = 'You lost...')
-}
+// function setFinalMessage() {
+//     return playerScore > computerScore
+//         ? (endgameMsg.textContent = 'You won!')
+//         : (endgameMsg.textContent = 'You lost...')
+// }
 
-function restartGame() {
-    humanScore = 0
-    computerScore = 0
-    playerScore.textContent = 'Player: 0'
-    computerScore.textContent = 'Computer: 0'
-    humanWeapon.textContent = '❔'
-    computerWeapon.textContent = '❔'
-    endgameModal.classList.remove('active')
-    overlay.classList.remove('active')
-}
+// function restartGame() {
+//     humanScore = 0
+//     computerScore = 0
+//     playerScore.textContent = 'Player: 0'
+//     computerScore.textContent = 'Computer: 0'
+//     humanWeapon.textContent = '❔'
+//     computerWeapon.textContent = '❔'
+//     endgameModal.classList.remove('active')
+//     overlay.classList.remove('active')
+// }

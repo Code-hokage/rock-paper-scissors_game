@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -8,7 +8,7 @@ body {
     background: rgba(255, 255, 255, 0.9);
 }
 
-.startGameWrapper{
+.startGameWrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,31 +23,33 @@ body {
     font-size: 1em;
     font-weight: 600;
     transition: .4s;
+    z-index: 15;
 }
 
 .displayNone {
     display: none;
 }
 
-.startGameWrapper h1, h3, p{
+.startGameWrapper h1,
+h3, p {
     color: rgba(0, 0, 0, 0.8);
 }
 
-.startGameWrapper h1{
+.startGameWrapper h1 {
     font-size: 3em;
     margin: 0.4em;
 }
 
-.startGameWrapper h3{
+.startGameWrapper h3 {
     font-size: 1.5em;
 }
 
-.startGameWrapper p{
+.startGameWrapper p {
     font-size: 1em;
     margin: 1em;
 }
 
-.startGame{
+.startGame {
     font-size: 2em;
     padding: 0.4em;
     border-radius: 0.4em;
@@ -57,32 +59,31 @@ body {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
 
-.startGame:hover{
+.startGame:hover {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
     color: #33c3ce;
     cursor: pointer;
 }
 
-.game{
+.game {
     width: 100vw;
     height: 100vh;
     display: flex;
-    /* flex-wrap: wrap; */
     flex-direction: column;
     align-items: center;
     font-weight: 800;
 }
 
-.gameTitle{
+.gameTitle {
     padding: 1em;
     text-align: center;
 }
 
-.gameTitle h1{
+.gameTitle h1 {
     padding: 0.2em;
 }
 
-.playGround{
+.playGround {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -90,7 +91,7 @@ body {
     width: 100%;
 }
 
-.fightGround{
+.fightGround {
     width: 35%;
     height: 80%;
     display: flex;
@@ -98,7 +99,7 @@ body {
     align-items: center;
 }
 
-.resultsDisplay{
+.resultsDisplay {
     width: 20%;
     height: 60%;
     display: flex;
@@ -107,21 +108,21 @@ body {
     align-items: center;
 }
 
-.resultsDisplay .results{
+.resultsDisplay .results {
     font-size: 2em;
 }
 
-.scoreBox{
+.scoreBox {
     font-size: 1.2em;
 }
 
-.player{
+.player {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.displayChoice{
+.displayChoice {
     height: 5em;
     width: 5em;
     font-size: 0.5em;
@@ -131,12 +132,12 @@ body {
     margin: 3em;
 }
 
-.player i{
+.player i {
     font-size: 6em;
     padding: 0.3em;
 }
 
-.weapons{
+.weapons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,11 +146,11 @@ body {
     margin-top: 2em;
 }
 
-.weapons p{
+.weapons p {
     padding: 0.5em;
 }
 
-.weapons i{
+.weapons i {
     font-size: 3em;
     padding: 0.2em;
     border-radius: 0.3em;
@@ -157,7 +158,11 @@ body {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
-.weapons i:hover{
+.flip{
+    transform: rotate(-90deg) scale(-1, 1);
+}
+
+.weapons i:hover {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     color: #026269;
     cursor: pointer;

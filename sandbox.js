@@ -124,25 +124,25 @@ function updateScore() {
 function updateChoices(playerSelection, computerSelection) {
     switch (playerSelection) {
         case 'rock':
-            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist"></i>`;
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist fa-rotate-90"></i>`;
             break;
         case 'paper':
-            humanWeapon.innerHTML = `<i class="fa-regular fa-hand"></i>`;
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand fa-rotate-90"></i>`;
             break;
         case 'scissors':
-            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors"></i>`;
+            humanWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors fa-flip-horizontal"></i>`;
             break;
     }
 
     switch (computerSelection) {
         case 'rock':
-            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist weapon"></i>`;
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-back-fist flip"></i>`;
             break
         case 'paper':
-            computerWeapon.innerHTML = `<i class="fa-regular fa-hand weapon"></i>`;
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand flip"></i>`;
             break
         case 'scissors':
-            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors weapon"></i>`;
+            computerWeapon.innerHTML = `<i class="fa-regular fa-hand-scissors"></i>`;
             break
     }
 }

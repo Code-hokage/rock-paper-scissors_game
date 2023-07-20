@@ -22,6 +22,11 @@ body {
     color: rgba(0, 0, 0, 0.8);
     font-size: 1em;
     font-weight: 600;
+    transition: .4s;
+}
+
+.displayNone {
+    display: none;
 }
 
 .startGameWrapper h1, h3, p{
@@ -55,6 +60,7 @@ body {
 .startGame:hover{
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
     color: #33c3ce;
+    cursor: pointer;
 }
 
 .game{
@@ -93,7 +99,7 @@ body {
     border: 2px solid crimson;
 }
 
-.results{
+.resultsDisplay{
     width: 20%;
     height: 60%;
     border: 2px solid green;
@@ -109,9 +115,9 @@ body {
     align-items: center;
 }
 
-.player .displayChoice{
-    height: 4em;
-    width: 4em;
+.displayChoice{
+    height: 5em;
+    width: 5em;
     border: 2px solid green;
 }
 
@@ -144,4 +150,5 @@ body {
 .weapons i:hover{
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7);
     color: #026269;
+    cursor: pointer;
 }

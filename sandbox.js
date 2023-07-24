@@ -7,15 +7,12 @@ const computerWeapon = document.querySelector('.computerWeapon')
 const humanScorePara = document.querySelector('.humanScore')
 const computerScorePara = document.querySelector('.computerScore')
 
-// const endgameModal = document.getElementById('endgameModal')
-// const endgameMsg = document.getElementById('endgameMsg')
+const endGameWrapper = document.querySelector('.endGameWrapper')
+const endGameMsg = document.querySelector('.endGameMsg')
+const restartBtn = document.querySelector('.playAgain')
 
-// const overlay = document.getElementById('overlay')
-// const restartBtn = document.getElementById('restartBtn')
-
-// restartBtn.addEventListener('click', restartGame)
-// overlay.addEventListener('click', closeEndgameModal)
-
+restartBtn.addEventListener('click', playAgain)
+endGameWrapper.addEventListener('click', closeEndGameWrapper)
 
 startGame.addEventListener('click', () => {
     gameWrapper.classList.toggle('displayNone')
@@ -76,10 +73,10 @@ scissorsBtn.addEventListener('click', () => handleClick('scissors'))
 
 // player selection to handle game
 function handleClick(playerSelection) {
-    // if (isGameOver()) {
-    //     openEndgameModal()
-    //     return
-    // }
+    if (isGameOver()) {
+        openEndGameWrapper()
+        return
+    }
 
     const computerSelection = getRandomChoice();
 
@@ -87,10 +84,10 @@ function handleClick(playerSelection) {
     updateChoices(playerSelection, computerSelection);
     updateScore();
 
-    // if (isGameOver()) {
-    //     openEndgameModal()
-    //     setFinalMessage()
-    // }
+    if (isGameOver()) {
+        openEndGameWrapper()
+        setFinalMessage()
+    }
 }
 
 // round results
@@ -116,9 +113,9 @@ function updateScore() {
 }
 
 
-// function isGameOver() {
-//     return playerScore === 5 || computerScore === 5
-// }
+function isGameOver() {
+    return humanScore === 5 || computerScore === 5
+}
 
 
 function updateChoices(playerSelection, computerSelection) {
@@ -171,29 +168,31 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 
-// function openEndgameModal() {
-//     endgameModal.classList.add('active')
-//     overlay.classList.add('active')
-// }
 
-// function closeEndgameModal() {
-//     endgameModal.classList.remove('active')
-//     overlay.classList.remove('active')
-// }
+function openEndGameWrapper() {
+    endGameWrapper.classList.remove('endActive')
+}
 
-// function setFinalMessage() {
-//     return playerScore > computerScore
-//         ? (endgameMsg.textContent = 'You won!')
-//         : (endgameMsg.textContent = 'You lost...')
-// }
+function closeEndGameWrapper() {
+    endGameWrapper.classList.add('endActive')
+}
 
-// function restartGame() {
-//     humanScore = 0
-//     computerScore = 0
-//     playerScore.textContent = 'Player: 0'
-//     computerScore.textContent = 'Computer: 0'
-//     humanWeapon.textContent = '❔'
-//     computerWeapon.textContent = '❔'
-//     endgameModal.classList.remove('active')
-//     overlay.classList.remove('active')
-// }
+//final score msg
+function setFinalMessage() {
+    return humanScore > computerScore
+        ? (endGameMsg.textContent = 'You won!')
+        : (endGameMsg.textContent = 'You lost...')
+}
+
+// play again 
+function playAgain() {
+    humanScore = 0;
+    computerScore = 0;
+    humanScorePara.textContent = 'Score: 0';
+    computerScorePara.textContent = 'Score: 0';
+    results.textContent = '';
+    scoreInfo.textContent = '';
+    humanWeapon.innerHTML = '';
+    computerWeapon.innerHTML = '';
+    endGameWrapper.classList.add('endActive')
+}

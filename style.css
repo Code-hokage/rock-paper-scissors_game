@@ -168,6 +168,10 @@ body {
     cursor: pointer;
 }
 
+.fa-github{
+    font-size: 2em;
+}
+
 .endGameWrapper{
     position: fixed;
     top: 0;
